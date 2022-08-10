@@ -41,9 +41,19 @@ AFTER YOU ARE FINISHED WITH THIS PROBLEM, ASK FOR A CODE REVIEW
 - What do you expect each callback function to be returning?
 - How many times are you calling each callback function?
 *******************************************************************************/
+let myFilter = function (arr, cb) {
+    let result = [];
+    arr.forEach(ele => cb(ele) ? result.push(ele) : null);
+    return result;
 
-let selectiveMap = function() {
+};
 
+
+
+let selectiveMap = function(arr, cb1, cb2) {
+    let result = [];
+    arr.forEach(ele => cb1(ele) ? result.push(cb2(ele)) : result.push(ele));
+    return result
 };
 
 
