@@ -16,15 +16,45 @@
 
 // console.log(mySimpleReduce(arr1,cb1, 3))
 
-let none = function (arr, cb) {
-    for (let i=0; i<arr.length; i++) {
-        if (cb(arr[i])) return false
-    }
-    return true
+// let none = function (arr, cb) {
+//     for (let i=0; i<arr.length; i++) {
+//         if (cb(arr[i])) return false
+//     }
+//     return true
+// };
+
+
+// let result2 = none(['ruby', 'topaz', 'sapphire', 'opal'], function (w) {
+//     return w.includes('e')});
+
+// console.log(result2);   // false
+
+
+let suffixCipher = function (str, obj) {
+    let wordArr=str.split(` `);
+    let keys = Object.keys(obj);
+    wordArr.forEach(word => {
+        for (let suffix of keys) {
+            if (word.endsWith(suffix)) {
+                wordArr[wordArr.indexOf(word)] = obj[suffix](word)
+                console.log(word)
+            }
+        }
+    })
+    return wordArr.join(' ')
 };
 
 
-let result2 = none(['ruby', 'topaz', 'sapphire', 'opal'], function (w) {
-    return w.includes('e')});
+let cipher1 = {
+    ly: function (word) {
+        return word.slice(0, -1) + 'ee';
+    },
+    ize: function (word) {
+        return word + 'r';
+    }
+};
 
-console.log(result2);   // false
+//console.log(cipher1.ly('quietly'))
+
+console.log(suffixCipher('quietly and gently visualize', cipher1));
+//quietlee and gentlee visualizer
